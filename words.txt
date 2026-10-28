@@ -1,0 +1,9 @@
+кот,cat
+собака,dog
+дом,house
+птица,bird
+школа,school
+яблоко,apple
+стол,table
+книга,book
+окно,window
