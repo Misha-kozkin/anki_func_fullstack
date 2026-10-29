@@ -50,7 +50,11 @@ def add_words(words):
 
 
 def show_all_words(words):
-    ...
+    """Выводит все пары «слово - перевод» одной строкой через «; »."""
+    pairs = []
+    for word, translation in words.items():
+        pairs.append(f'{word} - {translation}')
+    print('; '.join(pairs))
 
 
 def save_words(words: Dict[str, str], filename: str = 'words.txt') -> None:
@@ -63,7 +67,7 @@ def save_words(words: Dict[str, str], filename: str = 'words.txt') -> None:
         for word, translation in words.items():
             file.write(word + ',' + translation + '\n')
     print(f'Было сохранено {len(words)} словo в фаил {filename}')
-    
+
 
 def main():
     while True:
