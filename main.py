@@ -29,8 +29,19 @@ def load_words(filename: str = 'words.txt') -> Dict[str, str]:
     return words
 
 
-def print_statistics(score, total_time):
-    ...
+def print_statistics(score: int, total_time: float) -> None:
+    """Выводит итоговый счёт, общее и среднее время игры.
+
+    Среднее время считается на один правильный ответ. Если правильных
+    ответов нет, вместо среднего времени выводится прочерк.
+    """
+    game_time = format(total_time, '.2f')
+    if score > 0:
+        average = format(total_time / score, '.2f') + ' сек.'
+    else:
+        average = '—'
+    print(f'Ваш итоговый счет: {score}')
+    print(f'Время игры: {game_time} секунд (среднее время: {average})')
 
 
 def ask_and_check(word, correct):
