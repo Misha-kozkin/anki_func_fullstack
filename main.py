@@ -45,8 +45,25 @@ def train_until_mistake(words):
     ...
 
 
-def add_words(words):
-    ...
+def add_words(words: Dict[str, str]) -> None:
+    """Добавляет в словарь новые пары «слово - перевод».
+
+    Запрашивает у пользователя слово и перевод, пока не будет введено
+    завершающее слово (без учёта регистра и пробелов по краям).
+    Словарь изменяется на месте.
+    """
+    print(f'Чтобы закончить, введите {STOP_WORD}')
+    while True:
+        word = input('Введите слово: ').strip()
+        if word.lower() == STOP_WORD.lower():
+            break
+        translation = input('Введите перевод: ').strip()
+        if translation.lower() == STOP_WORD.lower():
+            break
+        if not word or not translation or ',' in word or ',' in translation:
+            print('Ошибка: пустое значение или запятая. Пара не добавлена.')
+            continue
+        words[word] = translation
 
 
 def show_all_words(words):
