@@ -62,8 +62,8 @@ def save_words(words: Dict[str, str], filename: str = 'words.txt') -> None:
     with open(filename, 'w', encoding='utf-8') as file:
         for word, translation in words.items():
             file.write(word + ',' + translation + '\n')
-    print(f'Было сохранено  {len(words)} слово в фаил {filename}')
-
+    print(f'Было сохранено {len(words)} словo в фаил {filename}')
+    
 
 def main():
     while True:
