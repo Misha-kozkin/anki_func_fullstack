@@ -66,7 +66,7 @@ def add_words(words: Dict[str, str]) -> None:
         words[word] = translation
 
 
-def show_all_words(words):
+def show_all_words(words: Dict[str, str]) -> None:
     """Выводит все пары «слово - перевод» одной строкой через «; »."""
     pairs = []
     for word, translation in words.items():
