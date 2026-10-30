@@ -44,8 +44,22 @@ def print_statistics(score: int, total_time: float) -> None:
     print(f'Время игры: {game_time} секунд (среднее время: {average})')
 
 
-def ask_and_check(word, correct):
-    ...
+def ask_and_check(word: str, correct: str) -> Tuple[bool, bool, float]:
+    """Спрашивает перевод слова и проверяет ответ.
+
+    Возвращает кортеж из трёх значений: нужно ли выйти из игры,
+    правильный ли ответ и сколько секунд занял ответ.
+    Сравнение выполняется без учёта регистра и пробелов по краям.
+    """
+    print(f'Ваше слово: {word}')
+    start_time = time.time()
+    answer = input('Ваш перевод: ')
+    end_time = time.time()
+    if answer.strip().lower() == STOP_WORD.lower():
+        return True, False, 0.0
+    answer_time = end_time - start_time
+    is_correct = answer.strip().lower() == correct.strip().lower()
+    return False, is_correct, answer_time
 
 
 def start_game(words):
