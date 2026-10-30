@@ -62,8 +62,38 @@ def ask_and_check(word: str, correct: str) -> Tuple[bool, bool, float]:
     return False, is_correct, answer_time
 
 
-def start_game(words):
-    ...
+def start_game(words: Dict[str, str]) -> None:
+    """Запускает обычную тренировку со случайными словами.
+
+    Задаёт случайные слова из словаря, пока пользователь не введёт
+    завершающее слово. Считает правильные ответы и общее время,
+    в конце выводит статистику.
+    """
+    if not words:
+        print('В словаре нет слов. Сначала добавьте слова.')
+        return
+    print(f'Чтобы закончить, введите {STOP_WORD}')
+    word_list = list(words)
+    score = 0
+    total_time = 0.0
+    while True:
+        word = random.choice(word_list)
+        correct = words[word]
+        is_stop, is_correct, answer_time = ask_and_check(word, correct)
+        if is_stop:
+            break
+        total_time += answer_time
+        time_text = format(answer_time, '.2f')
+        if is_correct:
+            score += 1
+            print(f'Верно! Время на ответ: {time_text} секунд')
+        else:
+            print(
+                f'Неправильно, правильный ответ: {correct} '
+                f'(Время на ответ: {time_text} секунд)'
+            )
+    print('Спасибо за игру!')
+    print_statistics(score, total_time)
 
 
 def train_until_mistake(words):
