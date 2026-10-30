@@ -7,3 +7,4 @@
 стол,table
 книга,book
 окно,window
+ручка,pen

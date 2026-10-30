@@ -175,17 +175,39 @@ def save_words(words: Dict[str, str], filename: str = 'words.txt') -> None:
     print(f'Было сохранено {len(words)} словo в фаил {filename}')
 
 
-def main():
+def main() -> None:
+    """Запускает главное меню тренажёра.
+
+    Загружает словарь из файла, затем в цикле показывает меню
+    и вызывает функцию, соответствующую выбранному пункту.
+    При выходе сохраняет словарь и завершает программу.
+    """
+    words = load_words()
+    print(f'Было загружено {len(words)} слов из файла words.txt')
+    menu = (
+        '\nМеню:\n'
+        '    1. Начать игру\n'
+        '    2. Добавить слова\n'
+        '    3. Тренировка до первой ошибки\n'
+        '    4. Вывод всех слов\n'
+        '    5. Выход\n'
+    )
     while True:
-        menu = '''Меню:
-        1. Начать игру
-        2. Добавить слова
-        3. Тренировка до первой ошибки
-        4. Вывод всех слов
-        5. Выход
-        '''
         print(menu)
-        menu_choice = input('Пункт меню: ')
+        menu_choice = input('Пункт меню: ').strip()
+        if menu_choice == '1':
+            start_game(words)
+        elif menu_choice == '2':
+            add_words(words)
+        elif menu_choice == '3':
+            train_until_mistake(words)
+        elif menu_choice == '4':
+            show_all_words(words)
+        elif menu_choice == '5':
+            save_words(words)
+            sys.exit()
+        else:
+            print('Неизвестный пункт меню')
 
 
 if __name__ == '__main__':
